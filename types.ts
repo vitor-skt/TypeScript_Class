@@ -58,3 +58,7 @@ let cart: object
 cart = {
     key: 'text'
 }
+
+//Type inference
+let message2 = "message defined"
+message2 = "new string"
