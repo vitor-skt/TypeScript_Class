@@ -62,3 +62,7 @@ cart = {
 //Type inference
 let message2 = "message defined"
 message2 = "new string"
+
+window.addEventListener("click", (e) => {
+    console.log(e.target);
+})
