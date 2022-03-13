@@ -1,5 +1,6 @@
 // accountInfo
-//charInfo
+// charInfo
+// playerInfo
 
 type AccountInfo = {
     id: number;
@@ -18,3 +19,22 @@ const account: AccountInfo = {
     email: "vitor@gmail.com"
 }
 
+type CharInfo = {
+    nickname: string;
+    level: number;
+}
+
+const char: CharInfo = {
+    nickname: "skt-vitor",
+    level: 100
+};
+
+// Intersection (and)
+type PlayerInfo = AccountInfo & CharInfo;
+
+const player: PlayerInfo = {
+    id: 123,
+    name: "vitor",
+    nickname: "skt-vitor",
+    level: 100
+}

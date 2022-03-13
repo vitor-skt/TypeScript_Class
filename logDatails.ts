@@ -8,7 +8,7 @@ function logDetails(uid: Uid, item: string) {
 function logInfo(uid: Uid, user: string) {
     console.log(`An user with ${uid} has a name as ${user}.`);
 }
-
+// Union (or)
 type Platform = 'Windows' | 'Linux' | 'Mac Os' | 'Ios';
 
 function renderPlatform(platform: Platform) {
