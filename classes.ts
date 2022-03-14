@@ -12,7 +12,24 @@ class UserAccount {
     }
 }
 
+class CharAccount extends UserAccount {
+    nickname: string;
+    level: number;
+
+    constructor(name: string, age: number, nickname: string, level: number) {
+        super(name, age);
+
+        this.nickname = nickname;
+        this.level = level;
+    }
+}
+
 const vitor = new UserAccount("Vitor Oliveira", 21);
 console.log(vitor);
 console.log(vitor.age);
 vitor.logDatails();
+
+
+const vitor2 = new CharAccount("Vitor Santana", 21, "skt-vitor2", 95);
+console.log(vitor2);
+vitor2.logDatails();

@@ -8,7 +8,17 @@ class UserAccount {
         console.log(`The player ${this.name} is ${this.age} years old.`);
     }
 }
+class CharAccount extends UserAccount {
+    constructor(name, age, nickname, level) {
+        super(name, age);
+        this.nickname = nickname;
+        this.level = level;
+    }
+}
 const vitor = new UserAccount("Vitor Oliveira", 21);
 console.log(vitor);
 console.log(vitor.age);
 vitor.logDatails();
+const vitor2 = new CharAccount("Vitor Santana", 21, "skt-vitor2", 95);
+console.log(vitor2);
+vitor2.logDatails();
