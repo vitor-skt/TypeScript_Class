@@ -14,15 +14,24 @@ class CharAccount extends UserAccount {
         this.nickname = nickname;
         this.level = level;
     }
+    get getLevel() {
+        console.log("-------GET--------");
+        return this.level;
+    }
+    set setLevel(level) {
+        this.level = level;
+    }
     logCharDetails() {
-        console.log(`The player ${this.name} has the char ${this.nickname} at level ${this.level}`);
+        console.log(`The player ${this.name} is ${this.age} years old and has the char ${this.nickname} at level ${this.level}`);
     }
 }
 const vitor = new UserAccount("Vitor Oliveira", 21);
 console.log(vitor);
-console.log(vitor.age);
 vitor.logDatails();
 const vitor2 = new CharAccount("Vitor Santana", 21, "skt-vitor2", 95);
 console.log(vitor2);
+console.log(vitor2.level);
 vitor2.logDatails();
 vitor2.logCharDetails();
+vitor2.setLevel = 499;
+console.log(vitor2.getLevel);
