@@ -16,7 +16,7 @@ type GameCollectionT = GameT & DLCT & { content: boolean };
 // implements 
 
 
-class CreateGameT implements GameCollectionT { }
+// class CreateGameT implements GameCollectionT { } // Comentei pra remover os erros
 
 // function declaration 
 

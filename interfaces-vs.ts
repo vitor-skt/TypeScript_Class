@@ -12,7 +12,7 @@ interface GameCollection extends Game, DLC { }
 
 // implements
 
-class CreateGame implements GameCollection { }
+// class CreateGame implements GameCollection { } // Comentei pra remover os erros
 
 // function declaration
 
@@ -23,7 +23,7 @@ interface getSimilars {
 
 // ======== Differences ======== //
 
-interface ID extends number { }
+// interface ID extends number { } // Comentei pra remover os erros
 
 // Não é possivel definir tuplas na interface
 interface Tuple {
