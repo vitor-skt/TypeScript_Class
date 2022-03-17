@@ -30,41 +30,73 @@
 
 //Property decorator
 
-function minLength(length: number) {
-    return (target: any, key: string) => {
-        let val = target[key]
+// function minLength(length: number) {
+//     return (target: any, key: string) => {
+//         let val = target[key]
 
-        const getter = () => val;
+//         const getter = () => val;
 
-        const setter = (value: string) => {
-            if (value.length < length) {
-                console.log(`erro ${key} deve conter mais que ${length} letras.`)
-            } else {
-                val = value;
-            }
-        }
-        Object.defineProperty(target, key, {
-            get: getter,
-            set: setter,
-        });
-    }
-}
+//         const setter = (value: string) => {
+//             if (value.length < length) {
+//                 console.log(`erro ${key} deve conter mais que ${length} letras.`)
+//             } else {
+//                 val = value;
+//             }
+//         }
+//         Object.defineProperty(target, key, {
+//             get: getter,
+//             set: setter,
+//         });
+//     }
+// }
 
-class Movie {
-    //validação - se for menor que 5 = error
-    @minLength(5)
-    title: string;
+// class Movie {
+//     //validação - se for menor que 5 = error
+//     @minLength(5)
+//     title: string;
 
-    constructor(t: string) {
-        this.title = t;
-    }
-}
+//     constructor(t: string) {
+//         this.title = t;
+//     }
+// }
 
-const movie = new Movie("Interstellar");
-console.log(movie);
-console.log(movie.title);
+// const movie = new Movie("Interstellar");
+// console.log(movie);
+// console.log(movie.title);
 
 
 //Method decorator
+
+function delay(ms: number) {
+    return (target: any, key: string, descriptor: PropertyDescriptor) => {
+        const originalMethod = descriptor.value;
+
+        descriptor.value = function (...args: any) {
+            console.log(`Esperando ${ms} ...`);
+            setTimeout(() => {
+                originalMethod.apply(this, args);
+            }, ms);
+
+            return descriptor;
+        }
+    }
+}
+
+class Greeter {
+    greeting: string;
+
+    constructor(g: string) {
+        this.greeting = g
+    }
+    // esperar um tempo e ai vai rodar o método (ms)
+    @delay(1000)
+
+    greet() {
+        console.log(`Hello! ${this.greeting}`)
+    }
+}
+const pessoa = new Greeter("Pessoinha!")
+pessoa.greet();
+
 //Parameter decorator
 //Acessor decorator

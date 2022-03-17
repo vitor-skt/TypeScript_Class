@@ -29,35 +29,60 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // class API { }
 // console.log(new API());
 //Property decorator
-function minLength(length) {
-    return (target, key) => {
-        let val = target[key];
-        const getter = () => val;
-        const setter = (value) => {
-            if (value.length < length) {
-                console.log(`erro ${key} deve conter mais que ${length} letras.`);
-            }
-            else {
-                val = value;
-            }
+// function minLength(length: number) {
+//     return (target: any, key: string) => {
+//         let val = target[key]
+//         const getter = () => val;
+//         const setter = (value: string) => {
+//             if (value.length < length) {
+//                 console.log(`erro ${key} deve conter mais que ${length} letras.`)
+//             } else {
+//                 val = value;
+//             }
+//         }
+//         Object.defineProperty(target, key, {
+//             get: getter,
+//             set: setter,
+//         });
+//     }
+// }
+// class Movie {
+//     //validação - se for menor que 5 = error
+//     @minLength(5)
+//     title: string;
+//     constructor(t: string) {
+//         this.title = t;
+//     }
+// }
+// const movie = new Movie("Interstellar");
+// console.log(movie);
+// console.log(movie.title);
+//Method decorator
+function delay(ms) {
+    return (target, key, descriptor) => {
+        const originalMethod = descriptor.value;
+        descriptor.value = function (...args) {
+            console.log(`Esperando ${ms} ...`);
+            setTimeout(() => {
+                originalMethod.apply(this, args);
+            }, ms);
+            return descriptor;
         };
-        Object.defineProperty(target, key, {
-            get: getter,
-            set: setter,
-        });
     };
 }
-class Movie {
-    constructor(t) {
-        this.title = t;
+class Greeter {
+    constructor(g) {
+        this.greeting = g;
+    }
+    // esperar um tempo e ai vai rodar o método (ms)
+    greet() {
+        console.log(`Hello! ${this.greeting}`);
     }
 }
 __decorate([
-    minLength(5)
-], Movie.prototype, "title", void 0);
-const movie = new Movie("Interstellar");
-console.log(movie);
-console.log(movie.title);
-//Method decorator
+    delay(1000)
+], Greeter.prototype, "greet", null);
+const pessoa = new Greeter("Pessoinha!");
+pessoa.greet();
 //Parameter decorator
 //Acessor decorator
