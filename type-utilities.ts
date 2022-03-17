@@ -25,4 +25,18 @@ console.log(todo2);
 
 // Pick 
 
-type TodoPreview = Pick<Todo, "title" | "description">
+type TodoPreview = Pick<Todo, "title" | "completed">
+
+const todo3: TodoPreview = {
+    title: "Zerar Ghost of Tsushima",
+    completed: false
+}
+
+// Omit 
+
+type TodoPreview2 = Omit<Todo, "description">
+
+const todo4: TodoPreview = {
+    title: "Zerar Ghost of Tsushima",
+    completed: false
+}
