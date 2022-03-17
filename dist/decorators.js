@@ -9,18 +9,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 //Factory
-function logger1(prefix) {
-    return (target) => {
-        console.log(`${prefix} - ${target}`);
+// function logger1(prefix: string) {
+//     return (target: any) => {
+//         console.log(`${prefix} - ${target}`);
+//     };
+// }
+// @logger1("awesome")
+// class Foo { }
+// //Class decorator
+// function setAPIVersion(apiVersion: string) {
+//     return (constructor: any) => {
+//         return class extends constructor {
+//             version = apiVersion;
+//         }
+//     }
+// }
+// //decorator - anotar a versão da API
+// @setAPIVersion("2.0.0")
+// class API { }
+// console.log(new API());
+//Property decorator
+function minLength(length) {
+    return (target, key) => {
+        let val = target[key];
+        const getter = () => val;
+        const setter = (value) => {
+            if (value.length < length) {
+                console.log(`erro ${key} deve conter mais que ${length} letras.`);
+            }
+            else {
+                val = value;
+            }
+        };
+        Object.defineProperty(target, key, {
+            get: getter,
+            set: setter,
+        });
     };
 }
-let Foo = class Foo {
-};
-Foo = __decorate([
-    logger1("awesome")
-], Foo);
-//Class decorator
-//Property decorator
+class Movie {
+    constructor(t) {
+        this.title = t;
+    }
+}
+__decorate([
+    minLength(5)
+], Movie.prototype, "title", void 0);
+const movie = new Movie("Interstellar");
+console.log(movie);
+console.log(movie.title);
 //Method decorator
 //Parameter decorator
 //Acessor decorator
