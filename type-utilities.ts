@@ -22,3 +22,7 @@ function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
 const todo2: Todo = updateTodo(todo, { completed: true });
 
 console.log(todo2);
+
+// Pick 
+
+type TodoPreview = Pick<Todo, "title" | "description">
